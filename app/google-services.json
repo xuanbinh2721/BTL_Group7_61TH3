@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "294419385222",
+    "firebase_url": "https://btl-clothing-shop-default-rtdb.firebaseio.com",
+    "project_id": "btl-clothing-shop",
+    "storage_bucket": "btl-clothing-shop.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:294419385222:android:7e2935768191380e28ba07",
+        "android_client_info": {
+          "package_name": "com.example.clothingshop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "294419385222-pbpt0r2m1jmuh5o2en50t56n8nniq1tt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjWVaAVX5NXlOvdyWEhqHfqxJ9B_aMwMw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "294419385222-pbpt0r2m1jmuh5o2en50t56n8nniq1tt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
