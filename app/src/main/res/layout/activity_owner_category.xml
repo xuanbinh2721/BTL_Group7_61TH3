@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Owner.OwnerCategory"
+    android:background="@drawable/bg_admin_category">
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/ic_menu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.008"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome"
+        android:textSize="24dp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/tvAdminCategory"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/tvAdminCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="O W N E R"
+        android:textSize="30dp"
+        android:textColor="@color/textColor"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.112" />
+
+    <Button
+        android:id="@+id/btnaddProduct"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_edt"
+        android:drawableLeft="@drawable/ic_add"
+        android:paddingLeft="30dp"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        android:text="Add new product"
+        android:textAllCaps="false"
+        android:textSize="28dp"
+        android:textColor="@color/textColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAdminCategory"
+        app:layout_constraintVertical_bias="0.08" />
+
+    <Button
+        android:id="@+id/btnMaintain"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_edt"
+        android:drawableLeft="@drawable/ic_category"
+        android:paddingLeft="30dp"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        android:text="Maintain Product"
+        android:textAllCaps="false"
+        android:textColor="@color/textColor"
+        android:textSize="28dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnaddProduct"
+        app:layout_constraintVertical_bias="0.101" />
+
+    <Button
+        android:id="@+id/checkOrder"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_edt"
+        android:drawableLeft="@drawable/ic_check"
+        android:paddingLeft="30dp"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        android:text="Check new order"
+        android:textAllCaps="false"
+        android:textSize="28dp"
+        android:textColor="@color/textColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnMaintain"
+        app:layout_constraintVertical_bias="0.13" />
+
+    <Button
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_edt"
+        android:drawableLeft="@drawable/ic_baseline_person_24"
+        android:paddingLeft="30dp"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        android:text="My Profile"
+        android:textAllCaps="false"
+        android:textColor="@color/textColor"
+        android:textSize="28dp"
+        app:layout_constraintBottom_toTopOf="@+id/OwnLogout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkOrder"
+        app:layout_constraintVertical_bias="0.388" />
+
+    <Button
+        android:id="@+id/OwnLogout"
+        android:layout_width="175dp"
+        android:layout_height="74dp"
+        android:layout_marginTop="88dp"
+        android:background="#EC3F3F"
+        android:text="Log out"
+        android:textSize="28dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.55"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.899" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

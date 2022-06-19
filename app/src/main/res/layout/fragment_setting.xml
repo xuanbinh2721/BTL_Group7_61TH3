@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#8BC34A">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="178dp"
+        android:layout_height="178dp"
+
+        android:background="@drawable/avatar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.157" />
+
+    <TextView
+        android:id="@+id/change_avt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ChangeAvatar"
+        android:textColor="@color/white"
+        android:textSize="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.043" />
+
+    <EditText
+        android:id="@+id/edtchangeName"
+        android:layout_width="340dp"
+        android:layout_height="55dp"
+        android:background="@drawable/bg_edt"
+        android:hint="Name . . ."
+        android:paddingLeft="10dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="28dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/change_avt"
+        app:layout_constraintVertical_bias="0.124" />
+
+    <EditText
+        android:id="@+id/changePhone"
+        android:layout_width="340dp"
+        android:layout_height="55dp"
+        android:background="@drawable/bg_edt"
+        android:hint="Phone . . ."
+        android:paddingLeft="10dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="28dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtchangeName"
+        app:layout_constraintVertical_bias="0.13" />
+
+    <Button
+        android:layout_width="350dp"
+        android:layout_height="55dp"
+        android:background="@drawable/bg_edt"
+        android:text="Update"
+        android:textAllCaps="false"
+        android:textSize="28dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/changePhone"
+        app:layout_constraintVertical_bias="0.281" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
