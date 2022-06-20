@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".Owner.MaintainProduct"
+    android:layout_marginTop="20dp"
+    android:layout_marginStart="15dp"
+    android:layout_marginEnd="15dp"
+    android:layout_marginBottom="5dp"
+    app:cardElevation="15dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="590dp"
+        android:background="#B52F25">
+
+        <ImageView
+            android:id="@+id/imgMaintainProduct"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="0dp"
+            android:scaleType="centerCrop" />
+
+        <EditText
+            android:id="@+id/edtMaintainName"
+            android:layout_width="340dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/imgMaintainProduct"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/bg_edt"
+            android:hint="Product Name"
+            android:textAlignment="center"
+            android:textSize="28dp" />
+
+        <EditText
+            android:id="@+id/edtMaintainProductDes"
+            android:layout_width="340dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/edtMaintainName"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/bg_edt"
+            android:hint="Product Des"
+            android:textAlignment="center"
+            android:textSize="30dp" />
+
+        <EditText
+            android:id="@+id/edtMaintainPrice"
+            android:layout_width="325dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/edtMaintainProductDes"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/bg_edt"
+            android:hint="Product Price"
+            android:textAlignment="center"
+            android:textSize="30dp" />
+
+        <Button
+            android:id="@+id/btnApply"
+            android:layout_width="325dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/edtMaintainPrice"
+            android:layout_marginStart="39dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="39dp"
+            android:background="@drawable/cssbtn"
+            android:text="Apply change"
+            android:textAllCaps="false"
+            android:textSize="28dp" />
+
+        <Button
+            android:id="@+id/btnDeteleProfuct"
+            android:layout_width="325dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/btnApply"
+            android:layout_marginStart="39dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="39dp"
+            android:background="@drawable/cssbtn"
+            android:text="Delete Product"
+            android:textAllCaps="false"
+            android:textSize="28dp" />
+
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
