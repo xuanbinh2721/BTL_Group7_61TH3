@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.clothingshop">
 
     <application
@@ -8,7 +9,14 @@
         android:label=""
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Design.NoActionBar">
+        android:theme="@style/Theme.Design.NoActionBar"
+        tools:replace="@android:theme">
+        <activity
+            android:name=".ContentCart"
+            android:exported="false" />
+        <activity
+            android:name=".setting"
+            android:exported="false" />
         <activity
             android:name=".SignupForm"
             android:exported="false" />
