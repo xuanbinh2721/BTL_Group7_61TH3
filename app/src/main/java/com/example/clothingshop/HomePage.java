@@ -6,63 +6,145 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 
-
-
+import com.example.clothingshop.Model.Products;
+import com.example.clothingshop.Owner.MaintainProduct;
+import com.example.clothingshop.ViewHolder.ProductViewHolder;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
-public class HomePage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class HomePage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     DrawerLayout drawerLayout;
-//    private static final int FRAGMENT_HOME = 0;
-//    private static final int FRAGMENT_CART = 1;
-//    private static final int FRAGMENT_SETTING = 2;
+    private DatabaseReference ProductsRef;
+    private RecyclerView recyclerView;
+    RecyclerView.LayoutManager layoutManager;
+    TextView textNameLogin;
 
-
-//    private int currnentFrag = FRAGMENT_HOME;
-
+    private String userType = "null";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+        recyclerView = findViewById(R.id.product_content);
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        if (bundle != null) {
+            // this will work only if we come from the admin activity
+            userType = getIntent().getExtras().get("Admin").toString();
+        }
+        ProductsRef = FirebaseDatabase.getInstance().getReference().child("Products");
 
         // add toolbar
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //if (!userType.equals("Admin")){
+            Toolbar toolbar = findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
 
-        drawerLayout = findViewById(R.id.drawerlayout);
+            drawerLayout = findViewById(R.id.drawerlayout);
+            textNameLogin = findViewById(R.id.textName);
+            findViewById(R.id.btnMenu).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    drawerLayout.openDrawer(GravityCompat.START);
+                }
+            });
+            ActionBarDrawerToggle toggle =
+                    new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_drawer_open, R.string.nav_drawer_close);
+            drawerLayout.addDrawerListener(toggle);
+            toggle.syncState();
 
-        findViewById(R.id.btnMenu).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                drawerLayout.openDrawer(GravityCompat.START);
-            }
-        });
+            NavigationView navigationView = findViewById(R.id.navigation_view);
+            navigationView.setNavigationItemSelectedListener(this);
 
-//        ActionBar actionBar = getSupportActionBar();
-//        String title = actionBar.getTitle().toString(); //Lấy tiêu đề nếu muốn
-//        actionBar.setDisplayShowHomeEnabled(true);
-//        actionBar.setLogo(R.drawable.ic_menu);    //Icon muốn hiện thị
-//        actionBar.setDisplayUseLogoEnabled(true);
+            navigationView.getMenu().findItem(R.id.nav_home).setChecked(true);
+//            textNameLogin.setText(currentOnlineUser.getName());
+//            //Picasso.get().load(Prevalent.currentOnlineUser.getImage()).placeholder(R.drawable.profile).into(profileImageView);
+//            DatabaseReference UsersRef = FirebaseDatabase.getInstance().getReference().child("Users").child(currentOnlineUser.getPhone());
+//            UsersRef.addValueEventListener(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(DataSnapshot dataSnapshot) {
+//                    if (dataSnapshot.exists()) {
+//                        if (dataSnapshot.child("image").exists()) {
+//                            String image = dataSnapshot.child("image").getValue().toString();
+//                            Picasso.get().load(image).placeholder(R.drawable.profile).into(profileImageView);
+//                        }
+//                    }
+//                }
+//
+//                @Override
+//                public void onCancelled(DatabaseError databaseError) {
+//
+//                }
+//            });
+//        }
+    }
+
+    protected void onStart(){
+        super.onStart();
+
+        FirebaseRecyclerOptions<Products> options =
+                new FirebaseRecyclerOptions.Builder<Products>()
+                        .setQuery(ProductsRef, Products.class)
+                        .build();
 
 
-        ActionBarDrawerToggle toggle =
-                new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_drawer_open, R.string.nav_drawer_close);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
+        FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter =
+                new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
+                    @Override
+                    protected void onBindViewHolder(@android.support.annotation.NonNull ProductViewHolder holder, int position, @android.support.annotation.NonNull final Products model){
+                        holder.txtProductName.setText(model.getPname());
+                        holder.txtProductDescription.setText(model.getDescription());
+                        holder.txtProductPrice.setText("Price = Rs. " + model.getPrice());
+                        Picasso.get().load(model.getImage()).into(holder.imageView);
 
-        NavigationView navigationView = findViewById(R.id.navigation_view);
-        navigationView.setNavigationItemSelectedListener(this);
+                        holder.itemView.setOnClickListener(new View.OnClickListener(){
+                            @Override
+                            public void onClick(View v) {
+                                if (userType.equals("Admin")){
+                                    Intent intent = new Intent(HomePage.this, MaintainProduct.class);
+                                    intent.putExtra("pid",model.getPid());
+                                    startActivity(intent);
+                                }else{
+                                    Intent intent = new Intent(HomePage.this,ProductDetails.class);
+                                    intent.putExtra("pid",model.getPid());
+                                    startActivity(intent);
+                                }
+                            }
+                        });
+                    }
 
-        navigationView.getMenu().findItem(R.id.nav_home).setChecked(true);
+                    @Override
+                    public ProductViewHolder onCreateViewHolder(@android.support.annotation.NonNull ViewGroup parent, int viewType){
+                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_items_layout, parent, false);
+                        ProductViewHolder holder = new ProductViewHolder(view);
+                        return holder;
+                    }
+                };
+        recyclerView.setAdapter(adapter);
+        adapter.startListening();
     }
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -89,8 +171,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
             startActivity(intent);
         }
         else if (id == R.id.nav_logout ) {
-            Intent intent = new Intent(HomePage.this, ProductDetails.class);
-            startActivity(intent);
+           finish();
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;

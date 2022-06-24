@@ -11,8 +11,10 @@ import com.example.clothingshop.Interface.ItemClickListener;
 import com.example.clothingshop.R;
 
 public class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-    TextView txtProductName, txtProductDescription, txtProductPrice;
-    ImageView imageView;
+    public TextView txtProductName;
+    public TextView txtProductDescription;
+    public TextView txtProductPrice;
+    public ImageView imageView;
     private ItemClickListener listener;
 
     public ProductViewHolder(@NonNull View itemView) {

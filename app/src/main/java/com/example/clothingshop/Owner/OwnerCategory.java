@@ -7,17 +7,25 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.clothingshop.HomePage;
+import com.example.clothingshop.MainActivity;
 import com.example.clothingshop.R;
 
 public class OwnerCategory extends AppCompatActivity {
-    Button btnAddProduct;
-    Button btnMaintain;
+    Button btnAddProduct, btnMaintain, btnLogout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner_category);
-
+        btnLogout = (Button) findViewById(R.id.OwnLogout);
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                logoutOwner();
+            }
+        });
         btnAddProduct = findViewById(R.id.btnaddProduct);
         btnAddProduct.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,6 +40,11 @@ public class OwnerCategory extends AppCompatActivity {
                 openMaintainProduct();
             }
         });
+    }
+
+    private void logoutOwner() {
+        Intent i = new Intent( this, MainActivity.class);
+        startActivity(i);
     }
 
     private void openMaintainProduct() {

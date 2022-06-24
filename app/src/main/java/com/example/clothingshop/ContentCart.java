@@ -24,6 +24,6 @@ public class ContentCart extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         btnDathang = (Button) findViewById(R.id.btnDathang);
         txtTotalAmount = (TextView) findViewById(R.id.page_title);
-        //txtMsg1 = (TextView) findViewById(R.id.msg1);
+
     }
 }
