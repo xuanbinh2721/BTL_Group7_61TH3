@@ -1,5 +1,7 @@
 package com.example.clothingshop;
 
+import static com.example.clothingshop.Prevalent.Prevalent.currentOnlineUser;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -45,10 +48,14 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+
         recyclerView = findViewById(R.id.product_content);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -59,18 +66,8 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         ProductsRef = FirebaseDatabase.getInstance().getReference().child("Products");
 
         // add toolbar
-        //if (!userType.equals("Admin")){
-            Toolbar toolbar = findViewById(R.id.toolbar);
-            setSupportActionBar(toolbar);
-
-            drawerLayout = findViewById(R.id.drawerlayout);
-            textNameLogin = findViewById(R.id.textName);
-            findViewById(R.id.btnMenu).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    drawerLayout.openDrawer(GravityCompat.START);
-                }
-            });
+        if (!userType.equals("Admin")) {
+            DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout);
             ActionBarDrawerToggle toggle =
                     new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_drawer_open, R.string.nav_drawer_close);
             drawerLayout.addDrawerListener(toggle);
@@ -79,27 +76,37 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
             NavigationView navigationView = findViewById(R.id.navigation_view);
             navigationView.setNavigationItemSelectedListener(this);
 
-            navigationView.getMenu().findItem(R.id.nav_home).setChecked(true);
-//            textNameLogin.setText(currentOnlineUser.getName());
-//            //Picasso.get().load(Prevalent.currentOnlineUser.getImage()).placeholder(R.drawable.profile).into(profileImageView);
-//            DatabaseReference UsersRef = FirebaseDatabase.getInstance().getReference().child("Users").child(currentOnlineUser.getPhone());
-//            UsersRef.addValueEventListener(new ValueEventListener() {
-//                @Override
-//                public void onDataChange(DataSnapshot dataSnapshot) {
-//                    if (dataSnapshot.exists()) {
-//                        if (dataSnapshot.child("image").exists()) {
-//                            String image = dataSnapshot.child("image").getValue().toString();
-//                            Picasso.get().load(image).placeholder(R.drawable.profile).into(profileImageView);
-//                        }
-//                    }
-//                }
-//
-//                @Override
-//                public void onCancelled(DatabaseError databaseError) {
-//
-//                }
-//            });
-//        }
+            findViewById(R.id.btnMenu).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    drawerLayout.openDrawer(GravityCompat.START);
+                }
+            });
+            View headerView = navigationView.getHeaderView(0);
+            TextView useNameTextView = headerView.findViewById(R.id.textName);
+            ImageView profileImageView = headerView.findViewById(R.id.imageView);
+
+
+            useNameTextView.setText(currentOnlineUser.getName());
+            //Picasso.get().load(Prevalent.currentOnlineUser.getImage()).placeholder(R.drawable.profile).into(profileImageView);
+            DatabaseReference UsersRef = FirebaseDatabase.getInstance().getReference().child("Users").child(currentOnlineUser.getPhone());
+            UsersRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        if (dataSnapshot.child("image").exists()) {
+                            String image = dataSnapshot.child("image").getValue().toString();
+                            Picasso.get().load(image).placeholder(R.drawable.avatar).into(profileImageView);
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+        }
     }
 
     protected void onStart(){
