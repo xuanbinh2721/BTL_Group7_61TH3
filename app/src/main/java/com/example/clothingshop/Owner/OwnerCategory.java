@@ -48,7 +48,8 @@ public class OwnerCategory extends AppCompatActivity {
     }
 
     private void openMaintainProduct() {
-        Intent i = new Intent( this, MaintainProduct.class);
+        Intent i = new Intent( this, HomePage.class);
+        i.putExtra("Owner","Owner");
         startActivity(i);
     }
 

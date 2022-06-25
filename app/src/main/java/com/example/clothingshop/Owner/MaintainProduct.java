@@ -36,7 +36,7 @@ public class MaintainProduct extends AppCompatActivity {
         productID = getIntent().getStringExtra("pid");
         // database reference to change the Products database
         // this line causing the app to crash
-        //productsRef = FirebaseDatabase.getInstance().getReference().child("Products").child(productID);
+        productsRef = FirebaseDatabase.getInstance().getReference().child("Products").child(productID);
         btnApplyChange = (Button) findViewById(R.id.btnApply);
         name = findViewById(R.id.edtMaintainName);
         price = findViewById(R.id.edtMaintainPrice);
@@ -44,12 +44,12 @@ public class MaintainProduct extends AppCompatActivity {
         imageView = findViewById(R.id.imgMaintainProduct);
         deleteBtn = findViewById(R.id.btnDeteleProfuct);
 
-        //pdisplaySpecificProductInfo();
+        displaySpecificProductInfo();
 
         btnApplyChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //applyChanges();
+                applyChanges();
             }
         });
         deleteBtn.setOnClickListener(new View.OnClickListener() {

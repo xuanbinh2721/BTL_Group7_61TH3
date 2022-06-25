@@ -124,7 +124,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
                         holder.itemView.setOnClickListener(new View.OnClickListener(){
                             @Override
                             public void onClick(View v) {
-                                if (userType.equals("Admin")){
+                                if (userType.equals("Owner")){
                                     Intent intent = new Intent(HomePage.this, MaintainProduct.class);
                                     intent.putExtra("pid",model.getPid());
                                     startActivity(intent);
