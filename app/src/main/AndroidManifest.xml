@@ -12,6 +12,9 @@
         android:theme="@style/Theme.Design.NoActionBar"
         tools:replace="@android:theme">
         <activity
+            android:name=".ConfirmFinalOrder"
+            android:exported="false" />
+        <activity
             android:name=".ContentCart"
             android:exported="false" />
         <activity

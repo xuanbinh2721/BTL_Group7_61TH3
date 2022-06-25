@@ -121,7 +121,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter =
                 new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
                     @Override
-                    protected void onBindViewHolder(@android.support.annotation.NonNull ProductViewHolder holder, int position, @android.support.annotation.NonNull final Products model){
+                    protected void onBindViewHolder(@androidx.annotation.NonNull ProductViewHolder holder, int position, @android.support.annotation.NonNull final Products model){
                         holder.txtProductName.setText(model.getPname());
                         holder.txtProductDescription.setText(model.getDescription());
                         holder.txtProductPrice.setText("Price = Rs. " + model.getPrice());
@@ -144,7 +144,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
                     }
 
                     @Override
-                    public ProductViewHolder onCreateViewHolder(@android.support.annotation.NonNull ViewGroup parent, int viewType){
+                    public ProductViewHolder onCreateViewHolder(@androidx.annotation.NonNull ViewGroup parent, int viewType){
                         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_items_layout, parent, false);
                         ProductViewHolder holder = new ProductViewHolder(view);
                         return holder;
