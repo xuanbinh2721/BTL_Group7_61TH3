@@ -48,7 +48,7 @@
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/change_avt"
-        app:layout_constraintVertical_bias="0.124" />
+        app:layout_constraintVertical_bias="0.063" />
 
     <EditText
         android:id="@+id/changePhone"
@@ -65,9 +65,27 @@
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtchangeName"
-        app:layout_constraintVertical_bias="0.13" />
+        app:layout_constraintVertical_bias="0.092" />
+
+    <EditText
+        android:id="@+id/edtchangeAddress"
+        android:layout_width="350dp"
+        android:layout_height="55dp"
+        android:background="@drawable/bg_edt"
+        android:hint="Address . . ."
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:paddingLeft="10dp"
+        android:textSize="28dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/changePhone"
+        app:layout_constraintVertical_bias="0.148" />
 
     <Button
+        android:id="@+id/btnUpdate"
         android:layout_width="350dp"
         android:layout_height="55dp"
         android:background="@drawable/bg_edt"
@@ -79,7 +97,7 @@
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/changePhone"
-        app:layout_constraintVertical_bias="0.281" />
+        app:layout_constraintVertical_bias="0.549" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
