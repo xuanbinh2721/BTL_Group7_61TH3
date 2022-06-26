@@ -26,8 +26,20 @@
         <entry key="..\:/BTLAndroid/BTL_Group7_61TH3/app/src/main/res/menu/nav_bar.xml" value="0.2078125" />
         <entry key="..\:/BTL_Group7_61TH3/app/src/main/res/layout/activity_confirm_final_order.xml" value="0.22447916666666667" />
         <entry key="..\:/BTL_Group7_61TH3/app/src/main/res/layout/activity_content_cart.xml" value="0.22447916666666667" />
+        <entry key="..\:/BTL_Group7_61TH3/app/src/main/res/layout/activity_customer_login.xml" value="0.18795289855072464" />
+        <entry key="..\:/BTL_Group7_61TH3/app/src/main/res/layout/activity_home_page.xml" value="0.1" />
+        <entry key="..\:/BTL_Group7_61TH3/app/src/main/res/layout/activity_main.xml" value="0.18795289855072464" />
+        <entry key="..\:/BTL_Group7_61TH3/app/src/main/res/layout/activity_maintain_product.xml" value="0.1" />
+        <entry key="..\:/BTL_Group7_61TH3/app/src/main/res/layout/activity_owner_add_product.xml" value="0.18795289855072464" />
+        <entry key="..\:/BTL_Group7_61TH3/app/src/main/res/layout/activity_owner_category.xml" value="0.18795289855072464" />
+        <entry key="..\:/BTL_Group7_61TH3/app/src/main/res/layout/activity_owner_login.xml" value="0.18795289855072464" />
+        <entry key="..\:/BTL_Group7_61TH3/app/src/main/res/layout/activity_product_details.xml" value="0.10916919959473151" />
         <entry key="..\:/BTL_Group7_61TH3/app/src/main/res/layout/activity_setting.xml" value="0.21875" />
+        <entry key="..\:/BTL_Group7_61TH3/app/src/main/res/layout/activity_signup_form.xml" value="0.18795289855072464" />
         <entry key="..\:/BTL_Group7_61TH3/app/src/main/res/layout/cart_items_layout.xml" value="0.22447916666666667" />
+        <entry key="..\:/BTL_Group7_61TH3/app/src/main/res/layout/content_home.xml" value="0.1" />
+        <entry key="..\:/BTL_Group7_61TH3/app/src/main/res/layout/header.xml" value="0.1" />
+        <entry key="..\:/BTL_Group7_61TH3/app/src/main/res/layout/product_items_layout.xml" value="0.18795289855072464" />
         <entry key="..\:/xampp/htdocs/buadi/BTL_Group7_61TH3/app/src/main/res/layout/activity_customer_login.xml" value="0.25" />
         <entry key="..\:/xampp/htdocs/buadi/BTL_Group7_61TH3/app/src/main/res/layout/activity_signup_form.xml" value="0.13677536231884058" />
       </map>

@@ -32,7 +32,7 @@ import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.util.HashMap;
 
-public class setting extends AppCompatActivity {
+public class Setting extends AppCompatActivity {
 
     final int REQUEST_CODE_GALLERY = 999;
     private ImageView profileImageView;
@@ -86,7 +86,7 @@ public class setting extends AppCompatActivity {
                 checker = "clicked";
                 CropImage.activity(imageUri)
                         .setAspectRatio(1, 1)
-                        .start(setting.this);
+                        .start(Setting.this);
             }
         });
         btnUpdate.setOnClickListener(new View.OnClickListener() {
@@ -106,9 +106,9 @@ public class setting extends AppCompatActivity {
         String phone = edtChangePhone.getText().toString();
         String name = edtChangeName.getText().toString();
         String address = edtChangeAddress.getText().toString();
-        userDb.updateDataUsers(oldphone, phone, name, null);
-        startActivity(new Intent(setting.this, HomePage.class));
-        Toast.makeText(setting.this, "Profile Info updated successfully.", Toast.LENGTH_SHORT).show();
+        userDb.updateDataUsers(oldphone, phone, name, address);
+        startActivity(new Intent(Setting.this, HomePage.class));
+        Toast.makeText(Setting.this, "Profile Info updated successfully.", Toast.LENGTH_SHORT).show();
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
@@ -120,13 +120,13 @@ public class setting extends AppCompatActivity {
         }
         else{
             Toast.makeText(this, "Error, Try Again.", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(setting.this, setting.class));
+            startActivity(new Intent(Setting.this, Setting.class));
             finish();
         }
     }
     private void userInfoSaved(){
         if (TextUtils.isEmpty(edtChangeName.getText().toString())){
-            Toast.makeText(this, "First Name is mandatory!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Your Name is mandatory!", Toast.LENGTH_SHORT).show();
         }
         else if (TextUtils.isEmpty(edtChangePhone.getText().toString())){
             Toast.makeText(this, "Phone Number is mandatory!", Toast.LENGTH_SHORT).show();
@@ -135,7 +135,7 @@ public class setting extends AppCompatActivity {
             Toast.makeText(this, "Please enter your address!", Toast.LENGTH_SHORT).show();
         }
         else if(checker.equals("clicked")){
-//            uploadImage();
+            uploadImage();
         }
     }
     private void uploadImage(){
@@ -162,13 +162,13 @@ public class setting extends AppCompatActivity {
                         userMap. put("image", myUrl);
                         ref.child(Prevalent.currentOnlineUser.getPhone()).updateChildren(userMap);
                         Prevalent.currentOnlineUser.setProfilePic("true");
-                        startActivity(new Intent(setting.this, HomePage.class));
-                        Toast.makeText(setting.this, "Profile Info updated successfully!", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(Setting.this, HomePage.class));
+                        Toast.makeText(Setting.this, "Profile Info updated successfully!", Toast.LENGTH_SHORT).show();
                         finish();
                     }
                     else
                     {
-                        Toast.makeText(setting.this, "Error.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Setting.this, "Error.", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -182,7 +182,9 @@ public class setting extends AppCompatActivity {
         // RETRIEVING USER DATA FROM SQLITE DATABASE
         String phone = Prevalent.currentOnlineUser.getPhone();
         String name = Prevalent.currentOnlineUser.getName();
-
+        String address = userDb.getUserAddress(phone);
+        if (address != null && !address.equals("null"))
+            edtChangeAddress.setText(address);
         edtChangePhone.setText(phone);
         edtChangeName.setText(name);
 

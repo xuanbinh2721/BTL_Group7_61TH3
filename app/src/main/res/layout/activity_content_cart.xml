@@ -7,26 +7,20 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_alignParentTop="true"
         android:layout_marginTop="0dp"
         android:background="#5E70D5">
 
         <TextView
             android:id="@+id/page_title"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="128dp"
-            android:layout_marginTop="13dp"
-            android:layout_marginEnd="165dp"
-            android:layout_marginBottom="6dp"
-            android:gravity="center"
-            android:text="YourCart"
-            android:textSize="30dp" />
+            android:layout_marginTop="10dp"
+            android:text="Your Cart"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="20dp" />
 
 
     </RelativeLayout>

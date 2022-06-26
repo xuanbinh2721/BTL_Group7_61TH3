@@ -2,16 +2,6 @@ package com.example.clothingshop;
 
 import static com.example.clothingshop.Prevalent.Prevalent.currentOnlineUser;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -21,9 +11,18 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.clothingshop.Model.Products;
 import com.example.clothingshop.Owner.MaintainProduct;
+import com.example.clothingshop.Owner.OwnerCategory;
 import com.example.clothingshop.ViewHolder.ProductViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -48,13 +47,13 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-
+        useNameTextView = (TextView) findViewById(R.id.textName);
 
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         if (bundle != null) {
-            // this will work only if we come from the admin activity
+            // chỉ thực hiện được khi đến từ
             userType = getIntent().getExtras().get("Owner").toString();
         }
         ProductsRef = FirebaseDatabase.getInstance().getReference().child("Products");
@@ -118,7 +117,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
                     protected void onBindViewHolder(@androidx.annotation.NonNull ProductViewHolder holder, int position, @android.support.annotation.NonNull final Products model){
                         holder.txtProductName.setText(model.getPname());
                         holder.txtProductDescription.setText(model.getDescription());
-                        holder.txtProductPrice.setText("Price = Rs. " + model.getPrice());
+                        holder.txtProductPrice.setText( model.getPrice()+ "VND" );
                         Picasso.get().load(model.getImage()).into(holder.imageView);
 
                         holder.itemView.setOnClickListener(new View.OnClickListener(){
@@ -163,12 +162,24 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
             }
         } else if (id == R.id.nav_setting) {
             if (!userType.equals("Owner")) {
-                Intent intent = new Intent(HomePage.this, setting.class);
+                Intent intent = new Intent(HomePage.this, Setting.class);
                 startActivity(intent);
             }
         }
         else if (id == R.id.nav_logout ) {
-           finish();
+            if (!userType.equals("Owner")) {
+                Intent intent = new Intent(HomePage.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+            }
+            else{
+                Intent intent = new Intent(HomePage.this, OwnerCategory.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+
+            }
         }
         DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout);
         drawerLayout.closeDrawer(GravityCompat.START);

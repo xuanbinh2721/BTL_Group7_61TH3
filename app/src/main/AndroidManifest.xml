@@ -19,7 +19,7 @@
             android:name=".ContentCart"
             android:exported="false" />
         <activity
-            android:name=".setting"
+            android:name=".Setting"
             android:exported="false" />
         <activity
             android:name=".SignupForm"
@@ -56,6 +56,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
 
     </application>
 
