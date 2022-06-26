@@ -1,10 +1,5 @@
 package com.example.clothingshop;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +10,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.clothingshop.Model.Cart;
 import com.example.clothingshop.Prevalent.Prevalent;
@@ -45,13 +45,14 @@ public class ContentCart extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         btnNext = (Button) findViewById(R.id.btnNext);
         txtTotalAmount = (TextView) findViewById(R.id.page_title);
+//        bắt sự kiện khi nhấn Next(chưa xong)
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
-                txtTotalAmount.setText("Total Price = $" + String.valueOf(overTotalPrice));
+                txtTotalAmount.setText("Tổng = VND" + String.valueOf(overTotalPrice));
                 Intent intent = new Intent(ContentCart.this, ConfirmFinalOrder.class);
                 // send the total price to the next  - confirm final order activity
-                intent.putExtra("Total Price", String.valueOf(overTotalPrice));
+                intent.putExtra("Tổng", String.valueOf(overTotalPrice));
                 startActivity(intent);
                 finish();
             }
@@ -61,22 +62,23 @@ public class ContentCart extends AppCompatActivity {
     protected void onStart(){
         super.onStart();
         CheckOrderState();
-        // reference to cart list node in firebase database
+        //tham chiếu đến nhánh con Card List
         final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Cart List");
-        //binds a Query to a RecyclerView and responds to all real-time events included items being added, removed, moved, or changed.
-        // Best used with small result sets since all results are loaded at once.
+        //liên kết Truy vấn với RecyclerView và phản hồi tất cả các sự kiện thời gian thực bao gồm các items được thêm, xóa, di chuyển hoặc thay đổi.
+        //được sử dụng với quy mô nhà khi tất cả kết quả được trả về trong 1 lần
         FirebaseRecyclerOptions<Cart> options =
                 new FirebaseRecyclerOptions.Builder<Cart>()
                         .setQuery(cartListRef.child("User View")
                                 .child(Prevalent.currentOnlineUser.getPhone())
                                 .child("Products"), Cart.class).build();
-
+//      tạo adapter để lên kết với viewholder
         FirebaseRecyclerAdapter<Cart, CartViewHolder> adapter
                 = new FirebaseRecyclerAdapter<Cart, CartViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull CartViewHolder holder, int position, @NonNull final Cart model){
-                holder.txtProductQuantity.setText("Quantity = " + model.getQuantity());
-                holder.txtProductPrice.setText("Price " + model.getPrice() + "$");
+//                đổ thông tin ra layout
+                holder.txtProductQuantity.setText("Số lượng = " + model.getQuantity());
+                holder.txtProductPrice.setText("Giá " + model.getPrice() + "VND");
                 holder.txtProductName.setText(model.getPname());
 
                 int oneTypeProductTPrice = 0;
@@ -86,22 +88,22 @@ public class ContentCart extends AppCompatActivity {
                     System.out.println("Exception raised!!\n");
                 }
 
-                //int oneTypeProductTPrice = ((Integer.valueOf(model.getPrice()))) * Integer.valueOf(model.getQuantity());
+
                 overTotalPrice += oneTypeProductTPrice;
-                // on clicking the items in cart we get two options -  edit and remove
+                // khi clik vào item trong cart sẽ có 2 lựa chọn là edit hoặc remove
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view){
                         CharSequence options[] = new CharSequence[]{"Edit","Remove"};
                         AlertDialog.Builder builder = new AlertDialog.Builder(ContentCart.this);
                         builder.setTitle("Cart Options");
-                        // options that appear in the builder
+                        //bắt sự kiện khi click vào 1 trong 2 option
                         builder.setItems(options, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i){
-                                // i==0 means Edit option from CharSequence
+                                // i==0 là chọn edit
                                 if (i == 0){
-                                    // send the user to product details activity
+                                    // đưa người dùng trở lại ProductDetails
                                     Intent intent = new Intent(ContentCart.this, ProductDetails.class);
                                     // Intents are asynchronous messages which allow Android components to request functionality from other components of the Android system.
                                     // For example an Activity can send an Intents to the Android system which starts another Activity .

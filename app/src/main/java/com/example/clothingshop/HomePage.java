@@ -47,7 +47,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-        useNameTextView = (TextView) findViewById(R.id.textName);
+
 
 
         Intent intent = getIntent();
@@ -73,7 +73,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
             navigationView.setNavigationItemSelectedListener(this);
 
             View headerView = navigationView.getHeaderView(0);
-            TextView useNameTextView = headerView.findViewById(R.id.textName);
+            useNameTextView = headerView.findViewById(R.id.textName);
             ImageView profileImageView = headerView.findViewById(R.id.imageView);
             useNameTextView.setText(currentOnlineUser.getName());
             //useNameTextView.setText(currentOnlineUser.getName());
